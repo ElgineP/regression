@@ -1,0 +1,22 @@
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.sqlite3
+.env
+.venv/
+venv/
+env/
+*.egg-info/
+.DS_Store
+
+# --- PyCharm / IDE ---
+.idea/
+.vscode/
+
+# --- Output / Generated Files ---
+data/output/
+data/throughput/*.json
+logs/

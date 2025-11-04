@@ -164,6 +164,9 @@ def process_comparison() -> None:
 
     for ref_entry in ref_data:
         ref_id = str(ref_entry.get("#", "")).strip()
+        ref_name = ref_entry.get("Name", "N/A")
+        ref_description = ref_entry.get("Description ", "N/A")  # note the space after Description
+        ref_expected = ref_entry.get("Expected Results", "N/A")
         ref_xml_raw = ref_entry.get("Full MX-Message:", "")
         test_entry = test_data_map.get(ref_id)
 
@@ -174,7 +177,13 @@ def process_comparison() -> None:
             ref_xml_str = clean_xml_string(ref_xml_raw)
             test_xml_str = clean_xml_string(test_xml_raw)
 
-            header = f"🧩 Comparing Reference #{ref_id} ↔ Test '{test_title}' ..."
+            # 🧩 Improved Header with reference metadata
+            header = (
+                f"\n🧩 Test #{ref_id}: {ref_name}\n"
+                f"📄 Description: {ref_description}\n"
+                f"🎯 Expected Result snippet:\n{ref_expected}\n"
+                f"🔁 Comparing Reference ↔ Test '{test_title}' ..."
+            )
             print(header)
             detailed_results.append(header)
 
